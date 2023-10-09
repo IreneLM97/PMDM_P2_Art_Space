@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">PMDM_P2_Art_Space</string>
-    <string name="anterior">Anterior</string>
-    <string name="siguiente">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="next">Siguiente</string>
+    <string name="title_1">La persistencia de la memoria</string>
+    <string name="author_1">Salvador Dalí</string>
+    <string name="year_1">(1931)</string>
+    <string name="title_2">Campo de trigo con cipreses</string>
+    <string name="author_2">Vincent van Gogh</string>
+    <string name="year_2">(1889)</string>
+    <string name="title_3">Los lirios de agua</string>
+    <string name="author_3">Claude Monet</string>
+    <string name="year_3">(1899)</string>
+    <string name="title_4">Impresión, sol naciente</string>
+    <string name="author_4">Claude Monet</string>
+    <string name="year_4">(1872)</string>
+    <string name="title_5">Starry Night</string>
+    <string name="author_5">Vincent van Gogh</string>
+    <string name="year_5">(1889)</string>
 </resources>

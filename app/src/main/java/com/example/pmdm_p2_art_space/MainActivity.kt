@@ -49,24 +49,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-class ArtData(
-    val imageResource: Int,
-    val titleResource: Int,
-    val authorResource: Int,
-    val yearResource: Int
-);
-
-@Composable
-fun GetArtData(result:Int = 1): ArtData {
-    return when(result) {
-        1 -> ArtData(R.drawable.obra_1, R.string.title_1, R.string.author_1, R.string.year_1)
-        2 -> ArtData(R.drawable.obra_2, R.string.title_2, R.string.author_2, R.string.year_2)
-        3 -> ArtData(R.drawable.obra_3, R.string.title_3, R.string.author_3, R.string.year_3)
-        4 -> ArtData(R.drawable.obra_4, R.string.title_4, R.string.author_4, R.string.year_4)
-        else -> ArtData(R.drawable.obra_5, R.string.title_5, R.string.author_5, R.string.year_5)
-    }
-}
-
 @Composable
 fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
     var result by remember { mutableStateOf(1) }
@@ -142,6 +124,24 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
                 )
             }
         }
+    }
+}
+
+class ArtData(
+    val imageResource: Int,
+    val titleResource: Int,
+    val authorResource: Int,
+    val yearResource: Int
+);
+
+@Composable
+fun GetArtData(result:Int = 1): ArtData {
+    return when(result) {
+        1 -> ArtData(R.drawable.obra_1, R.string.title_1, R.string.author_1, R.string.year_1)
+        2 -> ArtData(R.drawable.obra_2, R.string.title_2, R.string.author_2, R.string.year_2)
+        3 -> ArtData(R.drawable.obra_3, R.string.title_3, R.string.author_3, R.string.year_3)
+        4 -> ArtData(R.drawable.obra_4, R.string.title_4, R.string.author_4, R.string.year_4)
+        else -> ArtData(R.drawable.obra_5, R.string.title_5, R.string.author_5, R.string.year_5)
     }
 }
 

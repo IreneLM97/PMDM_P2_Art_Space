@@ -3,6 +3,7 @@ package com.example.pmdm_p2_art_space
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +29,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,10 +55,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
-    var result by remember { mutableStateOf(1) }
+    var index by remember { mutableStateOf(1) }
     val numImages = 5
 
-    val artData = getArtData(result)
+    val artData = getArtData(index)
 
     Column (
         modifier = modifier,
@@ -63,58 +66,55 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
     ) {
         Row(
             modifier = Modifier
-                .padding(top = 50.dp),
+                .padding(30.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
                 text = stringResource(R.string.art_space_title),
                 fontSize = 50.sp,
+                fontFamily = FontFamily.Cursive,
                 color = colorResource(id = R.color.white)
             )
         }
-        Row(
+        Column(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(15.dp, 15.dp, 15.dp, 0.dp)
+                .background(colorResource(id = R.color.white)),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(artData.imageResource),
-                contentDescription = result.toString(),
+                contentDescription = index.toString(),
                 modifier = Modifier
                     .size(400.dp)
+                    .padding(5.dp)
             )
-        }
-        Row(
-            Modifier
-                .height(50.dp)
-                .width(350.dp)
-                .background(colorResource(R.color.my_dark_middle)),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
             Text(
                 text = stringResource(artData.titleResource),
                 fontSize = 25.sp,
-                color = colorResource(id = R.color.white)
+                fontFamily = FontFamily.SansSerif,
+                color = colorResource(id = R.color.black)
             )
-        }
-        Row(
-            Modifier
-                .height(50.dp)
-                .width(350.dp)
-                .background(colorResource(R.color.my_dark_middle)),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(artData.authorResource),
-                fontSize = 23.sp,
-                color = colorResource(id = R.color.white)
-            )
-            Text(
-                text = stringResource(artData.yearResource),
-                fontSize = 23.sp,
-                color = colorResource(id = R.color.white)
-            )
+            Row(
+                Modifier
+                    .height(50.dp)
+                    .width(350.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(artData.authorResource),
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(id = R.color.black)
+                )
+                Text(
+                    text = stringResource(artData.yearResource),
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(id = R.color.black)
+                )
+            }
         }
         Row(
             modifier = Modifier
@@ -124,9 +124,10 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
         ) {
             Button(
                 onClick = {
-                    result = (result - 1 + numImages) % numImages
+                    index = (index - 1 + numImages) % numImages
                 },
-                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_dark_middle))
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_dark_middle)),
+                border = BorderStroke(2.dp, colorResource(id = R.color.white))
             ) {
                 Text(
                     stringResource(R.string.previous),
@@ -135,9 +136,10 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
             }
             Button(
                 onClick = {
-                    result = (result + 1) % numImages
+                    index = (index + 1) % numImages
                 },
-                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_dark_middle))
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_dark_middle)),
+                border = BorderStroke(2.dp, colorResource(id = R.color.white))
             ) {
                 Text(
                     stringResource(R.string.next),

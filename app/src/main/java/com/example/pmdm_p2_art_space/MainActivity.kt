@@ -43,6 +43,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pmdm_p2_art_space.ui.theme.PMDM_P2_Art_SpaceTheme
 
+/**
+ * CLASE PRINCIPAL PARA MOSTRAR LA APLICACIÓN
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

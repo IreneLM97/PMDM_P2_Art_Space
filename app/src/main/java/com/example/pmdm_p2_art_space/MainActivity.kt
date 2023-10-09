@@ -5,18 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ArtSpaceApp();
+                    ArtSpaceApp()
                 }
             }
         }
@@ -59,16 +55,15 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
     var result by remember { mutableStateOf(1) }
     val numImages = 5
 
-    val artData = GetArtData(result)
+    val artData = getArtData(result)
 
     Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.my_dark_gray)),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
-            modifier = Modifier.padding(30.dp),
+            modifier = Modifier
+                .padding(top = 50.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
@@ -84,7 +79,8 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
             Image(
                 painter = painterResource(artData.imageResource),
                 contentDescription = result.toString(),
-                modifier = Modifier.size(400.dp)
+                modifier = Modifier
+                    .size(400.dp)
             )
         }
         Row(
@@ -124,7 +120,7 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = 30.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
             Button(
                 onClick = {
@@ -157,10 +153,10 @@ class ArtData(
     val titleResource: Int,
     val authorResource: Int,
     val yearResource: Int
-);
+)
 
 @Composable
-fun GetArtData(result:Int = 1): ArtData {
+fun getArtData(result:Int = 1): ArtData {
     return when(result) {
         1 -> ArtData(R.drawable.obra_1, R.string.title_1, R.string.author_1, R.string.year_1)
         2 -> ArtData(R.drawable.obra_2, R.string.title_2, R.string.author_2, R.string.year_2)
@@ -175,5 +171,5 @@ fun GetArtData(result:Int = 1): ArtData {
 fun ArtSpaceApp() {
     ArtSpaceCarousel(modifier = Modifier
         .fillMaxSize()
-        .wrapContentSize(Alignment.Center))
+        .background(colorResource(id = R.color.my_dark_gray)))
 }

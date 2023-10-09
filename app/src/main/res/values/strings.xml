@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PMDM_P2_Art_Space</string>
+    <string name="anterior">Anterior</string>
+    <string name="siguiente">Siguiente</string>
 </resources>

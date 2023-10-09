@@ -1,3 +1,10 @@
+/**
+ * INTEGRANTES DEL GRUPO
+ * - Sergio Ania Lázaro
+ * - Ricardo de Antonio Aguirre
+ * - Irene López Melero
+ */
+
 package com.example.pmdm_p2_art_space
 
 import android.os.Bundle
@@ -46,6 +53,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    // Creamos la aplicación Art Space
                     ArtSpaceApp()
                 }
             }
@@ -53,17 +61,28 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * FUNCIÓN DONDE CREAMOS LA ESTRUCTURA PARA MOSTRAR LAS OBRAS DE ARTE
+ * modifier: Modifier -> representa el modifier que se aplica
+ */
 @Composable
-fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
+fun ArtSpaceCarousel(
+    modifier: Modifier = Modifier
+) {
+    // índice de la obra
     var index by remember { mutableStateOf(1) }
+    // número de obras totales
     val numImages = 5
 
+    // obtenemos imagen, título, autor y año de la obra
     val artData = getArtData(index)
 
+    // columna donde pondremos los elementos necesarios para mostrar la información de cada obra
     Column (
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // título de la aplicación
         Row(
             modifier = Modifier
                 .padding(30.dp),
@@ -76,12 +95,14 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
                 color = colorResource(id = R.color.white)
             )
         }
+        // información de la obra
         Column(
             modifier = Modifier
                 .padding(15.dp, 15.dp, 15.dp, 0.dp)
                 .background(colorResource(id = R.color.white)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // imagen de la obra
             Image(
                 painter = painterResource(artData.imageResource),
                 contentDescription = index.toString(),
@@ -89,12 +110,14 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
                     .size(400.dp)
                     .padding(5.dp)
             )
+            // título de la obra
             Text(
                 text = stringResource(artData.titleResource),
                 fontSize = 25.sp,
                 fontFamily = FontFamily.SansSerif,
                 color = colorResource(id = R.color.black)
             )
+            // autor y año de la obra
             Row(
                 Modifier
                     .height(50.dp)
@@ -116,6 +139,7 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
                 )
             }
         }
+        // botones de la aplicación
         Row(
             modifier = Modifier
                 .fillMaxSize()
@@ -150,6 +174,13 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
     }
 }
 
+/**
+ * CLASE CON LOS ATRIBUTOS DESCRIPTIVOS DE LA OBRA
+ * imageResource: Int -> representa el recurso empleado para la imagen
+ * titleResource: Int -> representa el recurso empleado para el título
+ * authorResource: Int -> representa el recurso empleado para el autor
+ * yearResource: Int -> representa el recurso empleado para el año
+ */
 class ArtData(
     val imageResource: Int,
     val titleResource: Int,
@@ -157,9 +188,14 @@ class ArtData(
     val yearResource: Int
 )
 
+/**
+ * FUNCIÓN PARA DEVOLVER UN OBJETO DE TIPO ArtData CON LOS DATOS DE LA OBRA CORRESPONDIENTE
+ * index: Int -> representa el índice de la obra de la que queremos obtener la información
+ * return -> objeto ArtData con los recursos de la obra
+ */
 @Composable
-fun getArtData(result:Int = 1): ArtData {
-    return when(result) {
+fun getArtData(index:Int = 1): ArtData {
+    return when(index) {
         1 -> ArtData(R.drawable.obra_1, R.string.title_1, R.string.author_1, R.string.year_1)
         2 -> ArtData(R.drawable.obra_2, R.string.title_2, R.string.author_2, R.string.year_2)
         3 -> ArtData(R.drawable.obra_3, R.string.title_3, R.string.author_3, R.string.year_3)
@@ -168,9 +204,13 @@ fun getArtData(result:Int = 1): ArtData {
     }
 }
 
+/**
+ * FUNCIÓN PARA PREVISUALIZAR LA APLICACIÓN
+ */
 @Preview(showBackground = true)
 @Composable
 fun ArtSpaceApp() {
+    // llamamos a la función que estructura la aplicación
     ArtSpaceCarousel(modifier = Modifier
         .fillMaxSize()
         .background(colorResource(id = R.color.my_dark_gray)))

@@ -5,15 +5,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -58,7 +63,8 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
 
     Column (
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(colorResource(id = R.color.my_dark_gray)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -66,11 +72,15 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "ART SPACE",
-                fontSize = 50.sp
+                text = stringResource(R.string.art_space_title),
+                fontSize = 50.sp,
+                color = colorResource(id = R.color.white)
             )
         }
-        Row {
+        Row(
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
             Image(
                 painter = painterResource(artData.imageResource),
                 contentDescription = result.toString(),
@@ -79,22 +89,35 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
         }
         Row(
             Modifier
-                .fillMaxWidth()
-                .padding(3.dp)
-                .background(colorResource(R.color.purple_200)),
-            horizontalArrangement = Arrangement.Center
+                .height(50.dp)
+                .width(350.dp)
+                .background(colorResource(R.color.my_dark_middle)),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = stringResource(artData.titleResource),
-                fontSize = 25.sp
+                fontSize = 25.sp,
+                color = colorResource(id = R.color.white)
             )
+        }
+        Row(
+            Modifier
+                .height(50.dp)
+                .width(350.dp)
+                .background(colorResource(R.color.my_dark_middle)),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = stringResource(artData.authorResource),
-                fontSize = 23.sp
+                fontSize = 23.sp,
+                color = colorResource(id = R.color.white)
             )
             Text(
                 text = stringResource(artData.yearResource),
-                fontSize = 23.sp
+                fontSize = 23.sp,
+                color = colorResource(id = R.color.white)
             )
         }
         Row(
@@ -106,7 +129,8 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
             Button(
                 onClick = {
                     result = (result - 1 + numImages) % numImages
-                }
+                },
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_dark_middle))
             ) {
                 Text(
                     stringResource(R.string.previous),
@@ -116,7 +140,8 @@ fun ArtSpaceCarousel(modifier: Modifier = Modifier) {
             Button(
                 onClick = {
                     result = (result + 1) % numImages
-                }
+                },
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_dark_middle))
             ) {
                 Text(
                     stringResource(R.string.next),
